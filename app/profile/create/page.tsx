@@ -1,14 +1,7 @@
 import FormContainer from "@/components/form/FormContainer";
 import FormInput from "@/components/form/FormInput";
 import SubmitButton from "@/components/form/SubmitButton";
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const createProfileAction = async (prevState: any, formData: FormData) => {
-	"use server";
-	const firstName = formData.get("firstName") as string;
-	if (firstName !== "shakeAndBake") return { message: "There was an error..." };
-	return { message: "Profile Created" };
-};
+import { createProfileAction } from "@/utils/actions";
 
 function CreateProfile() {
 	return (
