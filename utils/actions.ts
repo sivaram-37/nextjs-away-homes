@@ -58,6 +58,7 @@ export const fetchProfileImage = async () => {
 
 export const fetchProfile = async () => {
 	const user = await getAuthUser();
+
 	const profile = await db.profile.findUnique({
 		where: {
 			clerkId: user.id,
@@ -72,24 +73,22 @@ export const updateProfileAction = async (
 	formData: FormData
 ): Promise<{ message: string }> => {
 	const user = await getAuthUser();
-
 	try {
 		const rawData = Object.fromEntries(formData);
-		const validatedFields = profileSchema.safeParse(rawData);
 
-		if (!validatedFields.success) {
-			const errors = validatedFields.error.errors.map((error) => error.message);
-			throw new Error(errors.join(","));
-		}
+		const validatedFields = profileSchema.parse(rawData);
 
 		await db.profile.update({
-			where: { clerkId: user.id },
+			where: {
+				clerkId: user.id,
+			},
 			data: validatedFields,
 		});
-
 		revalidatePath("/profile");
 		return { message: "Profile updated successfully" };
 	} catch (error) {
-		return { message: error instanceof Error ? error.message : "An error occurred" };
+		return {
+			message: error instanceof Error ? error.message : "An error occurred",
+		};
 	}
 };
