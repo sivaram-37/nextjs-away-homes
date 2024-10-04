@@ -47,6 +47,15 @@ export default function LinksDropdown() {
 						<SignOutLink />
 					</DropdownMenuItem>
 				</SignedIn>
+				{/* {links.map((link) => (
+					<DropdownMenuItem key={link.href}>
+						<Link href={link.href}>{link.label}</Link>
+					</DropdownMenuItem>
+				))}
+				<DropdownMenuSeparator />
+				<DropdownMenuItem>
+					<SignOutLink />
+				</DropdownMenuItem> */}
 			</DropdownMenuContent>
 		</DropdownMenu>
 	);
