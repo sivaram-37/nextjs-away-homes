@@ -4,7 +4,7 @@
 import db from "./db";
 import { clerkClient, currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
-import { profileSchema } from "./schemas";
+import { profileSchema, validateWithZodSchema } from "./schemas";
 import { revalidatePath } from "next/cache";
 
 const getAuthUser = async () => {
@@ -22,7 +22,7 @@ export const createProfileAction = async (prevState: any, formData: FormData) =>
 		if (!user) throw new Error("Please login to create a profile");
 
 		const rawData = Object.fromEntries(formData);
-		const validatedFields = profileSchema.parse(rawData);
+		const validatedFields = validateWithZodSchema(profileSchema, rawData);
 
 		await db.profile.create({
 			data: {
@@ -75,8 +75,7 @@ export const updateProfileAction = async (
 	const user = await getAuthUser();
 	try {
 		const rawData = Object.fromEntries(formData);
-
-		const validatedFields = profileSchema.parse(rawData);
+		const validatedFields = validateWithZodSchema(profileSchema, rawData);
 
 		await db.profile.update({
 			where: {
