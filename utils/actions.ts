@@ -4,7 +4,12 @@
 import db from "./db";
 import { clerkClient, currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
-import { imageSchema, profileSchema, validateWithZodSchema } from "./schemas";
+import {
+	imageSchema,
+	profileSchema,
+	propertySchema,
+	validateWithZodSchema,
+} from "./schemas";
 import { revalidatePath } from "next/cache";
 import uploadImage from "./blob";
 
@@ -98,7 +103,7 @@ export const updateProfileImageAction = async (prevState: any, formData: FormDat
 	try {
 		const image = formData.get("image") as File;
 		const validatedFields = validateWithZodSchema(imageSchema, { image });
-		const fullPath = await uploadImage(validatedFields.image);
+		const fullPath = await uploadImage(validatedFields.image, user.id);
 
 		await db.profile.update({
 			where: {
@@ -115,3 +120,18 @@ export const updateProfileImageAction = async (prevState: any, formData: FormDat
 		return { message: error instanceof Error ? error.message : "An error occurred" };
 	}
 };
+
+// export const createPropertyAction = async (
+// 	prevState: any,
+// 	formData: FormData
+// ): Promise<{ message: string }> => {
+// 	const user = await getAuthUser();
+// 	try {
+// 		const rawData = Object.fromEntries(formData);
+// 		const validatedFields = validateWithZodSchema(propertySchema, rawData);
+// 		return { message: "Property created" };
+// 	} catch (error) {
+// 		return { message: error instanceof Error ? error.message : "An error occurred" };
+// 	}
+// 	redirect("/");
+// };

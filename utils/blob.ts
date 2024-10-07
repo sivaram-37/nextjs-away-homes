@@ -1,10 +1,7 @@
 import { put } from "@vercel/blob";
 
-export default async function uploadImage(image: File) {
-	const timestamp = Date.now();
-	const newName = `${timestamp}-${image.name}`;
-
-	const blob = await put(newName, image, {
+export default async function uploadImage(image: File, filename: string) {
+	const blob = await put(filename, image, {
 		access: "public",
 	});
 
