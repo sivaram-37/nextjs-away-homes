@@ -14,7 +14,7 @@ export default async function ProfilePage() {
 	return (
 		<section className="">
 			<h1 className="text-2xl font-semibold mb-8 capitalize">user profile</h1>
-			<div className="border p-8 rounded-md overflow-y-auto scroll-smooth max-h-96">
+			<div className="border p-8 rounded-md">
 				<ImageInputContainer
 					action={updateProfileImageAction}
 					text="Update Profile Image"
