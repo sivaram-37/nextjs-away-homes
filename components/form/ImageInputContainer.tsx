@@ -25,7 +25,7 @@ export default function ImageInputContainer(props: ImageInputContainerProps) {
 					alt={name}
 					width={100}
 					height={100}
-					className="rounded-full object-cover mb-4 w-36 h-36"
+					className="rounded-md object-cover mb-4 w-36 h-36"
 					priority
 				/>
 			) : (

@@ -1,3 +1,5 @@
+import { IconType } from "react-icons";
+
 export type FormInputProps = {
 	name: string;
 	type: string;
@@ -25,4 +27,27 @@ export type ImageInputContainerProps = {
 	action: actionFunction;
 	text: string;
 	children?: React.ReactNode;
+};
+
+type CategoryLabel =
+	| "cabin"
+	| "tent"
+	| "airstream"
+	| "cottage"
+	| "container"
+	| "caravan"
+	| "tiny"
+	| "magic"
+	| "warehouse"
+	| "lodge";
+
+export type Category = {
+	label: CategoryLabel;
+	icon: IconType;
+};
+
+export type TextAreaInputProps = {
+	name: string;
+	labelText?: string;
+	defaultValue?: string;
 };
