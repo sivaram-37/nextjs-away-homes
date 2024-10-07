@@ -10,5 +10,5 @@ export default async function uploadImage(image: File) {
 
 	if (!blob) throw new Error("Image upload failed");
 
-	return blob.downloadUrl;
+	return blob.url;
 }
