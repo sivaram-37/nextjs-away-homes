@@ -1644,6 +1644,7 @@ model Property {
 schemas.ts
 
 ```ts
+
 export const propertySchema = z.object({
 	name: z
 		.string()
