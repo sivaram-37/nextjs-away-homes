@@ -103,7 +103,7 @@ export const updateProfileImageAction = async (prevState: any, formData: FormDat
 	try {
 		const image = formData.get("image") as File;
 		const validatedFields = validateWithZodSchema(imageSchema, { image });
-		const fullPath = await uploadImage(validatedFields.image, user.id);
+		const fullPath = await uploadImage(validatedFields.image);
 
 		await db.profile.update({
 			where: {
