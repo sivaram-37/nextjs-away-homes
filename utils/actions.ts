@@ -6,7 +6,7 @@ import { clerkClient, currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { imageSchema, profileSchema, validateWithZodSchema } from "./schemas";
 import { revalidatePath } from "next/cache";
-import { put } from "@vercel/blob";
+import uploadImage from "./blob";
 
 const getAuthUser = async () => {
 	const user = await currentUser();
@@ -93,30 +93,23 @@ export const updateProfileAction = async (
 	}
 };
 
-export const updateProfileImageAction = async (
-	prevState: any,
-	formData: FormData
-): Promise<{ message: string }> => {
+export const updateProfileImageAction = async (prevState: any, formData: FormData) => {
 	const user = await getAuthUser();
 	try {
 		const image = formData.get("image") as File;
 		const validatedFields = validateWithZodSchema(imageSchema, { image });
-		console.log(validatedFields);
-
-		const timestamp = Date.now();
-		const newName = `${timestamp}-${validatedFields.image.name}`;
-		const blog = await put(`userAvatars/${newName}`, validatedFields.image, {
-			access: "public",
-		});
-
-		console.log(blog);
+		const fullPath = await uploadImage(validatedFields.image);
 
 		await db.profile.update({
-			where: { clerkId: user.id },
-			data: { profileImage: blog.url },
+			where: {
+				clerkId: user.id,
+			},
+			data: {
+				profileImage: fullPath,
+			},
 		});
 
-		revalidatePath("/");
+		revalidatePath("/profile");
 		return { message: "Profile image updated successfully" };
 	} catch (error) {
 		return { message: error instanceof Error ? error.message : "An error occurred" };
