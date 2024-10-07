@@ -16,7 +16,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 	return (
 		<ClerkProvider>
 			<html lang="en" suppressHydrationWarning>
-				<body className={inter.className}>
+				<body className={`${inter.className} overflow-hidden`}>
 					<Providers>
 						<Navbar />
 						<main className="container py-10">{children}</main>

@@ -6,9 +6,11 @@ export type FormInputProps = {
 	placeholder?: string;
 };
 
+type btnsize = "default" | "lg" | "sm";
 export type SubmitButtonProps = {
 	className?: string;
 	text?: string;
+	size?: btnsize;
 };
 
 export type actionFunction = (
@@ -16,3 +18,11 @@ export type actionFunction = (
 	prevState: any,
 	formData: FormData
 ) => Promise<{ message: string }>;
+
+export type ImageInputContainerProps = {
+	image: string;
+	name: string;
+	action: actionFunction;
+	text: string;
+	children?: React.ReactNode;
+};
