@@ -5,8 +5,7 @@ const nextConfig = {
 			{ protocol: "https", hostname: "img.clerk.com" },
 			{
 				protocol: "https",
-				hostname: "my-blob-store.public.blob.vercel-storage.com",
-				port: "",
+				hostname: "4uce32fctn9ip8ci.public.blob.vercel-storage.com",
 			},
 		],
 	},
