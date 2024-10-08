@@ -6,7 +6,7 @@ import NavSearch from "./NavSearch";
 export default function Navbar() {
 	return (
 		<nav className="border-b">
-			<div className="container flex flex-col py-8 flex-wrap gap-4 sm:flex-row sm:justify-between sm:items-center">
+			<div className="container flex flex-col py-4 flex-wrap gap-4 sm:flex-row sm:justify-between sm:items-center">
 				<Logo />
 				<NavSearch />
 				<div className="flex gap-4 items-center ">
