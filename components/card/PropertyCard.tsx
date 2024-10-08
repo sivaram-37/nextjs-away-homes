@@ -12,7 +12,7 @@ export default function PropertyCard({ property }: { property: PropertyCardProps
 	return (
 		<article className="group relative">
 			<Link href={`/properties/${propertyId}`}>
-				<div className="relative h-[300px] mb-2 overflow-hidden rounded-md">
+				<div className="relative h-[250px] mb-2 overflow-hidden rounded-md">
 					<Image
 						src={image}
 						alt={name}
