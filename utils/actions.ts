@@ -4,12 +4,7 @@
 import db from "./db";
 import { clerkClient, currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
-import {
-	imageSchema,
-	profileSchema,
-	propertySchema,
-	validateWithZodSchema,
-} from "./schemas";
+import { imageSchema, profileSchema, propertySchema, validateWithZodSchema } from "./schemas";
 import { revalidatePath } from "next/cache";
 import uploadImage from "./blob";
 
@@ -171,5 +166,6 @@ export async function fetchProperties({
 			price: true,
 		},
 	});
+
 	return properties;
 }
