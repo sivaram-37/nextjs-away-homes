@@ -5,9 +5,8 @@ const nextConfig = {
 			{ protocol: "https", hostname: "img.clerk.com" },
 			{
 				protocol: "https",
-				hostname: "4uce32fctn9ip8ci.public.blob.vercel-storage.com",
+				hostname: "res.cloudinary.com",
 			},
-			{ protocol: "https", hostname: "flagcdn.com" },
 		],
 	},
 };

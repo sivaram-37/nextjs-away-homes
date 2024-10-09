@@ -6,7 +6,8 @@ import { clerkClient, currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { imageSchema, profileSchema, propertySchema, validateWithZodSchema } from "./schemas";
 import { revalidatePath } from "next/cache";
-import uploadImage from "./blob";
+import { uploadImage } from "./cloudinary";
+// import uploadImage from "./blob";
 
 const getAuthUser = async () => {
 	const user = await currentUser();
